@@ -1,0 +1,7 @@
+{
+  "pack": {
+    "description": "Cow Feeder v2 - a named dropper that feeds and breeds cows",
+    "min_format": 101,
+    "max_format": 107
+  }
+}
