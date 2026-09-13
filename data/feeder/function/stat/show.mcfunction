@@ -1,0 +1,2 @@
+# 種別カウンタを 1 行で表示。マクロ関数。table.mcfunction から呼ばれる。  key = 接頭辞
+$tellraw @s [{"text":"  $(key)","color":"yellow"},{"text":"  slots:","color":"gray"},{"score":{"name":"$(key).slots","objective":"feeder.stat"}},{"text":" grow:","color":"gray"},{"score":{"name":"$(key).grow","objective":"feeder.stat"}},{"text":" breed:","color":"gray"},{"score":{"name":"$(key).breed","objective":"feeder.stat"}},{"text":" cap:","color":"gray"},{"score":{"name":"$(key).cap","objective":"feeder.stat"}}]

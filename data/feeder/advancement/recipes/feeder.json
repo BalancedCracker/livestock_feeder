@@ -1,0 +1,29 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_materials": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:ender_pearl"
+          },
+          {
+            "items": "minecraft:dropper"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_materials"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "feeder:feeder"
+    ],
+    "function": "feeder:unlock"
+  }
+}

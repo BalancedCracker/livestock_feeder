@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "show_notification": true,
+  "category": "misc",
+  "pattern": [
+    "EDE",
+    "SPS",
+    "RLR"
+  ],
+  "key": {
+    "D": "minecraft:dropper",
+    "E": "minecraft:ender_pearl",
+    "S": "minecraft:golden_shovel",
+    "P": "minecraft:golden_chestplate",
+    "R": "minecraft:repeater",
+    "L": "minecraft:golden_leggings"
+  },
+  "result": {
+    "count": 1,
+    "id": "minecraft:dropper",
+    "components": {
+      "custom_name": {
+        "text": "Livestock Feeder",
+        "color": "yellow"
+      }
+    }
+  }
+}

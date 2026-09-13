@@ -1,4 +1,5 @@
-# 実行者=候補の牛。過剰繁殖を避けるため 1 サイクルにつき 1 頭だけ処理する
+# 実行者=候補の家畜。餌の消費量を抜えないよう 1 サイクルにつき 1 頭だけ処理する。
+# （成長促進は頭数を増やさないので、この制限は繁殖対策ではなく餌対策）
 execute if score #fed feeder.tmp matches 1.. run return 0
 
 # Age : 負=子供 / 0=成体 / 正=繁殖クールダウン中
@@ -21,4 +22,5 @@ execute at @s run particle minecraft:happy_villager ~ ~1 ~ 0.3 0.3 0.3 0 6 force
 particle minecraft:happy_villager ~ ~1 ~ 0.3 0.3 0.3 0 6 force
 
 scoreboard players set #fed feeder.tmp 1
-scoreboard players add #grow feeder.stat 1
+# ★grow のカウンタは species 側で積む。
+#   ここは実行者が家畜なので、どの種の処理中なのかを知らない。

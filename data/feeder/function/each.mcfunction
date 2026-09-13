@@ -3,29 +3,24 @@
 # --- (1) 存在確認 : ドロッパーが消えていたら自分を撤去 ---
 execute unless block ~ ~ ~ minecraft:dropper run return run kill @s
 
-# --- (2) 在庫確認 : if items はマッチした「個数」を返す ---
+# --- (2) 巡回回数 : 統計の分母 ---
+# ★cycles ではなくこちらを分母に使うこと。
+#   cycles は台数にも在庫にも無関係に増えるうえ、未ロードチャンクの給餌器は
+#   そもそも巡回されない。「実際に処理される機会が何回あったか」は visits。
+scoreboard players add visits feeder.stat 1
+
+# --- (3) 在庫確認 : 餌が 1 種類でも入っているか ---
 # 結果を stocked タグに畳んでおく。glow ループはこのタグしか見ない。
 tag @s remove stocked
-execute store result score #wheat feeder.tmp if items block ~ ~ ~ container.* minecraft:wheat
-execute if score #wheat feeder.tmp matches ..0 run return 0
+execute store result score #any feeder.tmp if items block ~ ~ ~ container.* #feeder:all_food
+execute if score #any feeder.tmp matches ..0 run return run scoreboard players add empty feeder.stat 1
 tag @s add stocked
 
-# --- (3) 子供の成長促進を優先 : 頭数が増えないので密度ガードは不要 ---
-# AgeLocked:1b (金のタンポポ) はプレイヤーの明示的な意思なので除外する
-scoreboard players set #fed feeder.tmp 0
-execute as @e[distance=..4,nbt=!{Age:0},nbt=!{AgeLocked:1b},type=cow] run function feeder:grow_one
-execute if score #fed feeder.tmp matches 1.. run return run function feeder:consume
+# --- (4) 全体頭数を数えておく ---
+# 種別上限だけだと 6 種 x cap まで許してしまい、食肉工場になる。
+# ここで 1 回だけ数え、各 species が繁殖の直前に参照する。
+# ★同一サイクル内で増えた分は反映されない（次サイクルで補正される）
+execute store result score #total feeder.tmp if entity @e[type=#feeder:livestock,distance=..4]
 
-# --- (4) 密度上限 : これ以上は増やさない ---
-execute store result score #cows feeder.tmp if entity @e[distance=..4,type=cow]
-execute if score #cows feeder.tmp matches 12.. run return 0
-
-# --- (5) 繁殖 : 小麦 2 個 + 発情可能な成体 2 体 ---
-execute if score #wheat feeder.tmp matches ..1 run return 0
-execute store result score #ready feeder.tmp if entity @e[distance=..4,nbt={Age:0,InLove:0},type=cow]
-execute if score #ready feeder.tmp matches ..1 run return 0
-
-function feeder:breed
-function feeder:consume
-function feeder:consume
-scoreboard players add #breed feeder.stat 1
+# --- (5) 種ごとの処理 ---
+function feeder:table {op:"species"}

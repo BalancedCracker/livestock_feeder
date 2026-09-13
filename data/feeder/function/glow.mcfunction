@@ -7,4 +7,8 @@ schedule function feeder:glow 2s replace
 # ★force は付けない。
 #   normal のままなら約 32 ブロックを超えた分はサーバが自動で送信を止める。
 #   常時表示のインジケータでは、この自動間引きこそが欲しい挙動。
-execute as @e[tag=feeder,tag=stocked,distance=0..,type=marker] at @s run particle minecraft:composter ~ ~1.1 ~ 0.15 0.05 0.15 0 3
+#
+# ★在庫切れの表示はここに置かないこと。
+#   2 秒ごとに angry_villager を出す実装を試したが、鬱陶しすぎて不採用。
+#   在庫切れを知らせたい場合は each 側（30 秒周期）で 1 回出すこと。
+execute as @e[type=marker,tag=feeder,tag=stocked] at @s run particle minecraft:composter ~ ~1.1 ~ 0.15 0.05 0.15 0 3
