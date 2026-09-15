@@ -1,0 +1,28 @@
+# EditorConfig  https://editorconfig.org
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+# Markdown では行末の半角スペース 2 つが改行を意味するため、
+# 末尾の空白を落とすと表示が変わってしまう
+[*.md]
+trim_trailing_whitespace = false
+
+[*.mcfunction]
+indent_style = space
+indent_size = 2
+
+[*.json]
+indent_size = 2
+
+[*.mcmeta]
+indent_size = 2
+
+[*.sh]
+indent_size = 2
