@@ -1,47 +1,48 @@
 # Livestock Feeder
-[README for English](README.en.md)
+
+[README 日本語](README.md)
 
 ![Image Art](pack.png)
 
-家畜に餌を与える自動機械を追加するデータパックです。
+A data pack that adds an automatic feeding machine for your farm animals.
 
-**クラフトした「Livestock Feeder」を設置**して、対応する餌をインベントリに格納するだけで動作します。
-レッドストーンやその他の動力を必要としません。
+Just **place a crafted "Livestock Feeder"** and load it with the right feed. That's it.
+No redstone and no other power source required.
 
-このデータパックはサーバ側にのみ導入すればよく、**クライアントはバニラのまま**で遊べます。
-
----
-
-## 動作環境
-
-| 項目 | 値 |
-|---|---|
-| Minecraft Java Edition | 26.1 〜 26.2 (主に 26.1.2 で動作確認) |
-| data pack format | `min_format: 101` / `max_format: 107` |
-| 導入先 | サーバ側のみ(クライアント側には不要) |
-
-MOD ではないため、クライアント側へのインストールは必要ありません。リソースパックも使用しません。
-
-## 対応する家畜と餌
-
-| 家畜 | 餌 |
-|---|---|
-| ウシ | 小麦 |
-| ムーシュルーム | 小麦 |
-| ヒツジ | 小麦 |
-| ブタ | ニンジン / ジャガイモ / ビートルート |
-| ウサギ | ニンジン / 金のニンジン / タンポポ |
-| ニワトリ | 各種の種 |
-
-ネザーの家畜(ホグリン等)には対応していません。今後も対応する予定はありません。
+The data pack only needs to be installed on the server. **Clients can join with an unmodified vanilla game.**
 
 ---
 
-## 導入
+## Requirements
 
-`<world>/datapacks/` に `livestock_feeder` フォルダを配置して、既存のワールドであれば `/reload` コマンドを実行してください。
+| Item | Value |
+|---|---|
+| Minecraft Java Edition | 26.1 to 26.2 (mainly tested on 26.1.2) |
+| Data pack format | `min_format: 101` / `max_format: 107` |
+| Install location | Server only (nothing to install on the client) |
 
-新しいワールドを始めるのであれば、データパックを導入・有効化したあとに、いつもと同じようにゲームを始めてください。
+This is not a mod, so no client-side installation is needed. It does not use a resource pack either.
+
+## Supported animals and feed
+
+| Animal | Feed |
+|---|---|
+| Cow | Wheat |
+| Mooshroom | Wheat |
+| Sheep | Wheat |
+| Pig | Carrot / Potato / Beetroot |
+| Rabbit | Carrot / Golden Carrot / Dandelion |
+| Chicken | Seeds (wheat, beetroot, melon, pumpkin, and so on) |
+
+Nether animals such as Hoglins are not supported, and there are no plans to add them.
+
+---
+
+## Installation
+
+Put the `livestock_feeder` folder into `<world>/datapacks/`. For an existing world, run `/reload` afterwards.
+
+For a new world, install and enable the data pack from the world creation screen, then start playing as usual.
 
 ```
 <world>/datapacks/livestock_feeder/
@@ -50,9 +51,9 @@ MOD ではないため、クライアント側へのインストールは必要�
 └── data/
 ```
 
-zip に固めてから導入する場合は、**`pack.mcmeta` が zip のルート直下に存在するように**固めてください。
+If you would rather install it as a zip, make sure **`pack.mcmeta` sits at the root of the archive**.
 
-リポジトリのディレクトリごと固めると、１階層深くなって Minecraft が読み込みません。
+Zipping the repository folder itself puts everything one level deeper, and Minecraft will not load it.
 
 ```sh
 cd livestock_feeder && zip -r ../livestock_feeder.zip . -x '.git/*' -x 'datapack.config.json'
@@ -60,233 +61,231 @@ cd livestock_feeder && zip -r ../livestock_feeder.zip . -x '.git/*' -x 'datapack
 
 ---
 
-## 使い方
+## How to use
 
-### 1. クラフトする
+### 1. Craft it
 
 ![Recipe of Livestock Feeder](recipe.png)
 
-- エンダーパール × 2
-- ドロッパー × 1
-- 金のシャベル × 2
-- 金のチェストプレート × 1
-- 金のレギンス × 1
-- リピーター × 2
+- Ender Pearl × 2
+- Dropper × 1
+- Golden Shovel × 2
+- Golden Chestplate × 1
+- Golden Leggings × 1
+- Repeater × 2
 
-レシピブックには、エンダーパールとドロッパーを**両方所持した時点**で解禁されます。
+The recipe unlocks in your recipe book once you are **holding both an Ender Pearl and a Dropper**.
 
-### 2. 置く
+### 2. Place it
 
-他のブロックと同様、Livestock Feeder を手に持って設置してください。
+Place the Livestock Feeder like any other block.
 
-ビーコンの起動音と緑のパーティクルが出れば、正しく起動しています。
+If you hear a beacon activating and see green particles, it registered correctly.
 
-### 3. 餌を入れる
+### 3. Load it with feed
 
-右クリックして Livestock Feeder のインベントリを開き、餌を与えたい家畜に対応する餌を入れてください。
+Right-click the Livestock Feeder to open it, then put in the feed for whichever animals you want to raise.
 
-インベントリ内に餌が入っている間、周囲４ブロック以内の家畜に自動で餌を与えます。
-**餌が入っている間は緑の粒が立ち昇る**ので、インベントリを開いて確認しなくても餌の在庫があるかどうか分かります。
+While it has feed inside, it automatically feeds animals within 4 blocks.
+**Green particles rise from a Livestock Feeder that still has feed**, so you can see at a glance whether it needs a refill.
 
-複数種類の餌を同時に入れてもかまいません。家畜の種類ごとに必要な餌を与えます。
-また、普通のドロッパーと同様にホッパーで餌を流し込むこともできます。
+You can mix several kinds of feed in the same Livestock Feeder. Each animal gets the feed it needs.
+You can also pipe feed in with a hopper, exactly like a normal dropper.
 
-### 4. 撤去する
+### 4. Remove it
 
-他のブロックと同様に Livestock Feeder を壊してください。
+Break the Livestock Feeder like any other block.
 
-破壊された Livestock Feeder はアイテムとしてドロップするので、他の場所に設置し直す事ができます。
+It drops as an item, so you can pick it up and place it somewhere else.
 
-内部処理の都合で最大 30 秒間、緑のパーティクルが残る場合があります。
-
----
-
-## 挙動の解説
-
-Livestock Feeder は 30 秒ごとに 1 サイクルの動作を行い、家畜の種類ごとに次の順で判定します。
-
-1. **家畜の種類に対する餌が入っているか** — なければ即座に次の家畜へ
-2. **付近に子供が居れば成長促進** — 頭数は増えないので密度上限に関係なく実行
-3. **付近の密度上限のチェック**
-4. **付近に２頭の成体がいれば繁殖**
-
-これらの処理は**家畜の種類ごとに独立**して実行されるので、ある家畜の子供を育てている間も**別の家畜は普通に繁殖します**し、同じ種類の家畜も密度上限に達していなければ繁殖します。
-
-繁殖の暴走を抑えるために密度上限による制限は必要です。
-作者は、小規模〜中規模な田舎風の農場で使う事を想定して Livestock Feeder を作成しています。
-一日の作業を終えてから我が家に戻ってきた時に「ああ、また少し増えているな」と感じる、そんな小さな幸せを想像してみてください。
-
-大規模な食肉工場が必要であれば、それに適した MOD を探す方が良いでしょう。
-
-### 成長促進について
-
-バニラの挙動と同じく「残り成長時間を 10% 短縮」します。(1 サイクルにつき 1 頭の子供を対象にします)
-
-この制限は**家畜の種類ごとに独立**しているので、ウシの子供とブタの子供が同時に居れば、同じサイクルで両方が成長促進されます。
-
-Livestock Feeder インベントリの餌を 1 回につき 1 個消費します。
-
-残り成長時間が **2 分以下の子供は対象外**です。10% 短縮の効果は指数関数的に効きが悪くなるため、終盤の成長は自然に任せたほうが餌 1 個あたりの繁殖効率が高いためです。
-
-**金のタンポポで `AgeLocked` 状態にした子供は対象外**です。
-プレイヤーの意向「この個体は子供のままにしておきたい」を成長促進よりも尊重します。
-
-### 繁殖について
-
-繁殖可能な成体が 2 頭以上いるとき、最寄りの 2 頭をラブ・モードにします。(1 サイクルにつき 1 ペアを対象にします)
-
-Livestock Feeder インベントリの餌を 1 回につき 2 個消費します。
-
-バニラの手渡しと異なり `LoveCause` が未定義のままになるため**繁殖系の実績や統計には加算されません**。
-
-経験値オーブはバニラと同様に発生するので、プレイヤーが繁殖場所の近くにいれば拾うことができます。
+Because of how the internals work, green particles may linger for up to 30 seconds afterwards.
 
 ---
 
-## チューニング
+## How it behaves
 
-カスタマイズを考えた時に変えたくなる可能性が高い箇所について説明します。
+A Livestock Feeder runs one cycle every 30 seconds. For each kind of animal, it checks the following in order.
 
-| 対象 | 既定値 | 場所 |
+1. **Is there feed for this animal?** — if not, move on to the next animal immediately
+2. **Speed up a nearby baby's growth** — this does not add animals, so it ignores the density limits
+3. **Check the density limits**
+4. **Breed, if two adults are nearby**
+
+These checks run **independently for each kind of animal**. While one species is busy raising a baby, **the others keep breeding normally** — and so does that same species, as long as it is under its density limit.
+
+Density limits exist to keep breeding from running away.
+I built the Livestock Feeder with small and mid-sized country farms in mind.
+Picture coming home after a day's work and noticing, "ah, there are a few more than yesterday." That small pleasure is what this is for.
+
+If you need an industrial-scale meat factory, you will be happier with a mod built for that.
+
+### About growth
+
+It shortens a baby's remaining growth time by 10%, the same as vanilla. (One baby per cycle.)
+
+That limit is **per species**, so if a baby cow and a baby pig are both nearby, both get fed in the same cycle.
+
+Each feeding consumes one item of feed from the Livestock Feeder.
+
+Babies with **less than 2 minutes of growth left are skipped**. The 10% reduction gets exponentially less useful as a baby approaches adulthood, so leaving the last stretch to nature spends your feed far more effectively.
+
+Babies locked with a **Golden Dandelion (`AgeLocked`) are also skipped**.
+If a player has deliberately said "I want this one to stay a baby," that decision outranks growth.
+
+### About breeding
+
+When two or more adults are ready to breed, the nearest two are put into love mode. (One pair per cycle.)
+
+Each breeding consumes two items of feed from the Livestock Feeder.
+
+Unlike hand-feeding in vanilla, `LoveCause` is left undefined, so **breeding advancements and statistics do not count these pairings**.
+
+Experience orbs drop just like in vanilla, so you can collect them if you happen to be nearby.
+
+---
+
+## Tuning
+
+These are the values you are most likely to want to change.
+
+| What | Default | Where |
 |---|---|---|
-| 判定周期 | 30 秒 | `function/load.mcfunction` と `function/tick.mcfunction` の **2 箇所** |
-| パーティクル表示周期 | 2 秒 | `function/load.mcfunction` と `function/glow.mcfunction` の **2 箇所** |
-| 給餌距離 | 半径 4 ブロック(球体) | `function/species.mcfunction` の `distance=..4` |
-| 家畜の種類ごとの密度上限 | 8 | `function/table.mcfunction` の呼び出し表の `cap` |
-| 家畜全体の密度上限 | 24 | `function/species.mcfunction` の `#total ... matches 24..` |
-| 成長促進を打ち切る残り時間 | 2400 ticks | `function/grow_one.mcfunction` の `matches -2400..` |
+| Cycle interval | 30 seconds | `function/load.mcfunction` **and** `function/tick.mcfunction` |
+| Particle interval | 2 seconds | `function/load.mcfunction` **and** `function/glow.mcfunction` |
+| Feeding range | Radius 4 blocks (sphere) | `distance=..4` in `function/species.mcfunction` |
+| Per-species density limit | 8 | `cap` in the dispatch table in `function/table.mcfunction` |
+| Overall density limit | 24 | `#total ... matches 24..` in `function/species.mcfunction` |
+| Growth cutoff | 2400 ticks | `matches -2400..` in `function/grow_one.mcfunction` |
 
-判定周期とパーティクル表示周期を変えるときは 2 箇所あることに注意してください。
-`function/load.mcfunction` だけ変更すると初回の間隔だけが変わります。
+Note that both intervals live in **two places**.
+Changing only `function/load.mcfunction` changes nothing but the very first delay.
 
-### 餌の消費量に関する知見
+### Notes on feed consumption
 
-餌の総消費量に最も大きな影響を与えるのは**判定周期**であり、1 サイクルにつき 1 頭という制限はありますが、対象となる子供が存在する限り Livestock Feeder は毎サイクル１個ずつ消費し続けることになります。
+The single biggest factor in total feed consumption is the **cycle interval**. Even with the one-baby-per-cycle limit, a Livestock Feeder keeps spending one item every cycle for as long as there is a baby to feed.
 
-判定周期が 5 秒と短かったプロトタイプでは、消費される餌の **9 割以上が成長促進**に使われていました。
-1 スタック 64 個を消費しても増える家畜は 4〜5 頭で、餌を揃える手間に見合いません。
-リリース版の判定周期が 30 秒なのは、この比率を繁殖側に寄せるためです。
+In an early prototype with a 5-second interval, **over 90% of all feed went into growth**.
+A full stack of 64 bought only four or five new animals, which is not worth the trouble of farming the feed.
+The release default of 30 seconds exists to push that ratio back toward breeding.
 
-ただしこの比率は、牧場の状況(子供の数、密度上限への近さ、入れてある餌の種類)で大きく変わります。
-**自分の環境での実際の内訳は `/function feeder:debug` で詳細なカウンタを見てください。**
+That ratio shifts a lot with the state of your farm, though — how many babies there are, how close you are to the density limits, and which feeds you loaded.
+**To see the real breakdown for your own farm, read the counters with `/function feeder:debug`.**
 
-| 見たいこと | 読む場所 |
+| What you want to know | Where to look |
 |---|---|
-| 餌がどちらに消えているか | `total` 行の `grow` と `breed`（消費数は `grow` + `breed` × 2） |
-| 餌切れで空回りしていないか | `empty` / `visits` |
-| 何に阻まれているか | `blocked` 行と `<種類>.cap` |
+| Where the feed is going | `grow` and `breed` on the `total` line (consumption is `grow` + `breed` × 2) |
+| Whether it is idling on an empty feeder | `empty` / `visits` |
+| What is blocking it | The `blocked` line and `<species>.cap` |
 
-それでも家畜の増え方に対して餌の消費量が多すぎると感じたなら、まず**成長促進を打ち切る残り時間を増やすこと**を試してください。
-子供は何もしなくても20分経てば成体になるので、プレイヤーが付近で別の作業をしながら時間を潰していれば、餌の大半が成長促進ではなく繁殖に使われるという理屈です。
+If feed still runs out faster than your herd grows, the first thing to try is **raising the growth cutoff**.
+Babies reach adulthood on their own in 20 minutes, so if you are working nearby anyway, most of your feed ends up going into breeding instead of growth.
 
-次に検討したいのは、**判定周期を調整すること**です。
-判定周期を短縮すれば繁殖回数を増やすことができますが、同じサイクルで成長促進も行われます。
-成長促進の処理回数を増やしても、総量を増やす効果はあまり大きくありません。
+The second thing to try is **adjusting the cycle interval**.
+A shorter interval does mean more breeding attempts, but growth runs in the same cycles.
+Spending more cycles on growth does very little to increase your herd.
 
 ---
 
-## 家畜の種類を追加する
+## Adding another animal
 
-1. `data/feeder/tags/item/<家畜>_food.json` に餌のアイテムタグを作る
-2. `data/feeder/tags/item/all_food.json` にそのタグを追加する
-3. `data/feeder/tags/entity_type/livestock.json` に家畜のエンティティ ID を追加する
-4. `data/feeder/function/table.mcfunction` の呼び出し表に 1 行追加する(例はヤギ -- Goat)
+1. Create a feed item tag at `data/feeder/tags/item/<animal>_food.json`
+2. Add that tag to `data/feeder/tags/item/all_food.json`
+3. Add the animal's entity ID to `data/feeder/tags/entity_type/livestock.json`
+4. Add one line to the dispatch table in `data/feeder/function/table.mcfunction` (a Goat, for example)
 
 ```mcfunction
 $function feeder:$(op) {key:"goat", id:"minecraft:goat", food:"#feeder:goat_food", cap:"8"}
 ```
 
-`key` は統計カウンタの接頭辞になります。
-この表は給餌処理だけでなく統計の初期化・表示・リセットにも使い回されているので、
-**ここに 1 行追加すればカウンタも自動的に増えます**。
+`key` becomes the prefix for that animal's statistics counters.
+The same table drives feeding, statistics setup, display and reset, so **adding one line here adds the counters too**.
 
-> **注意：餌ではなく家畜の種類ごとに 1 行にすること**
+> **Careful: one line per animal, not per feed**
 >
-> 小麦を食べるウシ・ムーシュルーム・ヒツジをまとめて扱うと、
-> 最寄り 2 頭が例えばウシとヒツジになった場合に繁殖できず、餌だけが消える。
+> If you lump together the wheat eaters — Cow, Mooshroom and Sheep — the nearest two might turn out to be a cow and a sheep.
+> They cannot breed with each other, so the feed is consumed and nothing happens.
 
 ---
 
-## 動作確認
+## Checking that it works
 
 ```
 /function feeder:debug
 ```
 
-マーカー数・餌の在庫あり台数・処理の累計カウンタをチャットに表示します。
-全マーカーの位置に炎のパーティクルを、チャットに座標を出力します。
+This prints the number of markers, how many Livestock Feeders currently hold feed, and the running counters. It also emits a flame particle at every marker and prints their coordinates to chat.
 
-マーカーは当たり判定がないので **F3+B でも見えません**。目視ではなく座標で確認するのが確実です。
+Markers have no hitbox, so **F3+B will not show them**. Reading the coordinates is more reliable than looking for them.
 
-カウンタは 30 個あり、サイドバーには収まらないのでこの関数で確認してください。
+There are 30 counters, which will not fit on the sidebar, so use this function instead.
 
-カウンタは**全 Livestock Feeder の合算**です。台ごとの内訳は取れません。
+Counters are **summed across every Livestock Feeder**. There is no per-machine breakdown.
 
-| カウンタ | 意味 |
+| Counter | Meaning |
 |---|---|
-| `cycles` | 判定ループの回数。単なる時計（30 秒ごと） |
-| `visits` | Livestock Feeder が巡回された延べ回数。**統計の分母** |
-| `empty` | 餌が 1 種類も入っていなかった回数 |
-| `<種類>.slots` | その家畜用の餌が入っていた延べ回数 |
-| `<種類>.grow` | 成長促進の回数（= 餌 1 個） |
-| `<種類>.breed` | 繁殖の回数（= 餌 2 個 = 生まれた頭数） |
-| `<種類>.cap` | 家畜ごとの密度上限で撤退した回数 |
-| `cap_all` | 全体の密度上限で撤退した回数 |
-| `low_food` | 餌が 2 個未満で繁殖できなかった回数 |
-| `no_pair` | 発情可能な成体が 2 頭未満だった回数 |
+| `cycles` | Number of loop iterations. Just a clock (one per 30 seconds) |
+| `visits` | How many times a Livestock Feeder has been visited. **Use this as your denominator** |
+| `empty` | Times a Livestock Feeder held no feed at all |
+| `<species>.slots` | Times that animal's feed was present |
+| `<species>.grow` | Growth feedings (1 feed each) |
+| `<species>.breed` | Breedings (2 feed each, and one new animal each) |
+| `<species>.cap` | Times it stopped at that animal's density limit |
+| `cap_all` | Times it stopped at the overall density limit |
+| `low_food` | Times there was less than 2 feed to breed with |
+| `no_pair` | Times fewer than 2 adults were ready to breed |
 
-統計はいつでもリセットできます。チューニングの試行ごとに叩いてください。
+You can reset the statistics at any time. Run this between tuning experiments.
 
 ```
 /function feeder:reset_stats
 ```
 
-| 式 | 意味 |
+| Formula | Meaning |
 |---|---|
-| `cycles` × 30 秒 | 経過時間。**餌の有無や設置台数とは無関係に増えます** |
-| Σ`grow` + Σ`breed` × 2 | 消費した餌の総数（成長促進は 1 個、繁殖は 2 個） |
-| Σ`breed` | 生まれた頭数 |
-| Σ`breed` / `visits` | 1 台・1 サイクルあたりの平均出生数 |
-| `empty` / `visits` | 餌切れで空回りしていた割合の平均値 |
+| `cycles` × 30 seconds | Elapsed time. **Counts up regardless of feed or machine count** |
+| Σ`grow` + Σ`breed` × 2 | Total feed consumed (1 per growth, 2 per breeding) |
+| Σ`breed` | Animals born |
+| Σ`breed` / `visits` | Average births per machine per cycle |
+| `empty` / `visits` | Share of visits wasted on an empty machine |
 
-### 分母には `visits` を使ってください
+### Use `visits` as the denominator
 
-`cycles` は設置台数にも餌の在庫にも無関係に増えるため、分母には適しません。
-未ロードチャンクの Livestock Feeder はそもそも巡回されないので、`cycles × 台数` でも実態からずれます。
+`cycles` counts up no matter how many machines you have or whether any of them hold feed, which makes it a poor denominator.
+`cycles × machines` is not much better, since a Livestock Feeder in an unloaded chunk is never visited at all.
 
-合計は `/function feeder:debug` の `total` 行と `blocked` 行に出るので、手で足す必要はありません。
+The totals appear on the `total` and `blocked` lines of `/function feeder:debug`, so you do not have to add them up yourself.
 
-### 「なぜ働かなかったか」を読む
+### Reading "why it did nothing"
 
-チューニングに役立つのは、働いた回数より**何もせずに空転した理由**の分析です。
+What actually helps with tuning is not how often it worked, but **why it came up empty**.
 
-| 突出している数値 | 打つ手 |
+| Counter that stands out | What to do |
 |---|---|
-| `empty` | 餌を足す。または牧場の規模に対して台数が多すぎる。 |
-| `<種類>.cap` | その種類の家畜が飽和している。`cap` を見直すか、周期を延ばす。家畜を間引く頻度を増やす。 |
-| `cap_all` | 全体密度の上限 24 に張り付いている。家畜を間引く頻度を増やす。家畜が動ける範囲を広げる。 |
-| `low_food` | 餌の補充が追いついていない。 |
-| `no_pair` | 成体不足かクールダウン待ち。**異常ではなく、待てば解決します**。 |
+| `empty` | Add feed, or you have too many machines for the size of the farm. |
+| `<species>.cap` | That animal is saturated. Revisit `cap`, lengthen the interval, or cull more often. |
+| `cap_all` | You are pinned at the overall limit of 24. Cull more often, or give the animals more room. |
+| `low_food` | Refills are not keeping up. |
+| `no_pair` | Not enough adults, or they are still on cooldown. **This is normal — it resolves on its own.** |
 
-`low_food` と `no_pair` は症状が似ていますが、**打つ手は正反対**です。
-前者は補充が必要で、後者は放置して構いません。
+`low_food` and `no_pair` look alike but call for **opposite responses**.
+The first needs a refill; the second needs nothing at all.
 
-`no_pair` が多い場合、Livestock Feeder は「まだ繁殖できない群れ」に毎回話しかけているので、**周期を延ばしても出生数はほとんど落ちません**。
-逆に `<種類>.cap` が多いなら上限に張り付いているので、こちらも周期を延ばすことで餌だけを節約できます。
+When `no_pair` dominates, the Livestock Feeder is talking to a herd that simply is not ready yet, so **lengthening the interval barely costs you any births**.
+When `<species>.cap` dominates you are pinned at the limit, so lengthening the interval saves feed for free there as well.
 
-### 検算
+### Cross-check
 
-餌があった場合の処理は必ずどれかの結末に落ちるので、次の等式が成り立ちます。
+Every visit that found feed ends in exactly one outcome, so this identity holds:
 
 ```
-Σ<種類>.slots = Σ<種類>.cap + cap_all + low_food + no_pair + Σ<種類>.breed
+Σ<species>.slots = Σ<species>.cap + cap_all + low_food + no_pair + Σ<species>.breed
 ```
 
-合わなければ、把握していない経路があるということです。
+If it does not balance, there is a path you have not accounted for.
 
-### 手動登録（フォールバック）
+### Manual registration (fallback)
 
-自動登録が効かないとき用のお助け関数です。Livestock Feeder の上に立って実行してください。
+A rescue function for when automatic registration fails. Stand on top of the Livestock Feeder and run:
 
 ```
 /function feeder:register
@@ -294,193 +293,194 @@ $function feeder:$(op) {key:"goat", id:"minecraft:goat", food:"#feeder:goat_food
 
 ---
 
-## 既知の制限
+## Known limitations
 
-- **セレクタは同一ディメンションしか探さない**。`schedule` された関数はオーバーワールドのコンテキストで実行されるため、ネザーやエンドに置いた Livestock Feeder は巡回されない。
-- **チャンクが未ロードだと停止する**。ホッパーやドロッパーと同じ挙動。留守中に勝手に増え続けることはない。
-- **全体の頭数はサイクル開始時に 1 回だけ数える**。同一サイクル内で増えた分は次のサイクルまで反映されない。
-- **同じ種類の子供が複数いる場合、どの個体が先に給餌されるかはエンティティの走査順による**。最寄り順ではない。1 頭が成体になるまで同じ個体が選ばれ続ける傾向がある(結果として 1 頭ずつ順に育つ)。
-- **繁殖がプレイヤーに帰属しない**。NBT 経由で発情させているため `LoveCause` が空になり、「繁殖系の進捗」や「繁殖させた動物」の統計に加算されない(経験値オーブはバニラと同じように発生する)。
+- **Selectors only search the current dimension.** Scheduled functions run in the Overworld context, so a Livestock Feeder placed in the Nether or the End is never visited.
+- **It stops in unloaded chunks**, exactly like a hopper or a dropper. Nothing multiplies behind your back while you are away.
+- **The overall population is counted once at the start of each cycle.** Animals born during that cycle are not counted until the next one.
+- **When several babies of the same species are nearby, which one gets fed depends on entity iteration order**, not on distance. The same individual tends to keep being picked until it grows up — which in practice means they mature one at a time.
+- **Breeding is not attributed to any player.** Because love mode is set through NBT, `LoveCause` stays empty and these pairings never count toward breeding advancements or the "Animals Bred" statistic. (Experience orbs still drop, just like vanilla.)
 
 ---
 
-## 開発メモ
+## Development notes
 
-改造するときに踏みやすい落とし穴についての知見です。いずれも実地で踏んでわかった地雷です。
+Pitfalls worth knowing about before you start modifying this. Every one of them cost me time in the field.
 
-### CustomName の型が入手経路で変わる
+### The type of `CustomName` depends on how you named it
 
-1.21.5 でテキストコンポーネントが JSON 文字列から NBT 構造そのものになった結果、**装飾の有無で NBT の型が異なります**。
+Since 1.21.5, text components are stored as NBT structures rather than JSON strings, which means **the NBT type changes depending on whether the name is styled**.
 
-| 経路 | `CustomName` |
+| How it was named | `CustomName` |
 |---|---|
-| 金床でリネーム | `"Livestock Feeder"`（素の文字列） |
-| レシピ（色付き） | `{text:"Livestock Feeder",color:"yellow"}`（compound） |
+| Renamed in an anvil | `"Livestock Feeder"` (a plain string) |
+| From the recipe (styled) | `{text:"Livestock Feeder",color:"yellow"}` (a compound) |
 
-文字列と compound は型が違うので相互にマッチしません。
+A string and a compound are different types, so neither matches the other.
 
-今回は、**この性質を鍵として利用**しています。金床は名前に色を付けられないため、
-`color` を含む compound を要求することで「クラフト品だけを受け付ける」制限が成立します。
-名前や色を変えるときは `place/ray.mcfunction` と `register.mcfunction` の両方を修正してください。
+**This project uses that as its key.** An anvil cannot add color to a name, so requiring a compound that contains `color` is what keeps anvil-made copies out and accepts only crafted ones.
+If you change the name or the color, fix **both** `place/ray.mcfunction` and `register.mcfunction`.
 
-確認は推測せず実物で：
+Do not guess the format — check the real thing:
 
 ```
 /data get block <x> <y> <z> CustomName
 ```
 
-### アドバンスメントの報酬は付与時に 1 回だけ
+### Advancement rewards fire exactly once
 
-`rewards` は達成した瞬間にしか走りません。**一度達成済みになると、
-JSON を直して `/reload` しても何も起きません**。検証のたびに取り消しが必要です。
+`rewards` only runs at the moment the advancement is granted. **Once you have it, editing the JSON and running `/reload` does nothing at all.** You have to revoke it before every test.
 
 ```
 /advancement revoke @s only feeder:recipes/feeder
 ```
 
-同じ理由で、設置検出の `place/detect.mcfunction` は
-**1 行目で自分を revoke しています**。これを消すと 1 回しか登録できなくなります。
+For the same reason, `place/detect.mcfunction` **revokes itself on its first line**. Delete that and you will only ever be able to register one Livestock Feeder.
 
-### トーストは 2 種類ある
+### There are two kinds of toast
 
-| | 文言 | 変更 |
+| | Wording | Customizable? |
 |---|---|---|
-| レシピ開放 | 「レシピブックを確認しましょう」 | 翻訳キー固定。変更不可 |
-| 実績達成 | `frame` で決まる（task/goal/challenge） | 文言自体は変更不可 |
+| Recipe Unlocked | "Check your recipe book" | Fixed translation key. No |
+| Advancement Made | Determined by `frame` (task / goal / challenge) | The wording itself, no |
 
-どちらも**アイテム名は表示してくれません**。
-何が起こったのかを伝えたければ、`rewards.function` からチャットに出すのが確実です(`function/unlock.mcfunction`)。
+**Neither one shows the item's name.**
+If you want the player to know what they just unlocked, sending a chat message from `rewards.function` is the reliable way (see `function/unlock.mcfunction`).
 
-また、**レシピ開放トーストは同時に解禁されたものを 1 枚にまとめて表示**します。
-解禁条件がバニラのレシピと同時であると、アイテム名が表示されないこともあって埋もれてしまいます(ドロッパー単体を条件にすると自動作業台と同時に表示されます)。
+Also, **recipe toasts are merged into a single toast when several recipes unlock at the same moment**.
+Unlock alongside a vanilla recipe and yours gets buried — with no item name shown, nobody will notice. (Gate it on a Dropper alone and it lands at the same instant as the Crafter.)
 
-解禁条件をエンダーパールとドロッパーの AND にしているのはこの現象の回避も兼ねています。
+Requiring both an Ender Pearl and a Dropper is partly a way to dodge that collision.
 
-### `as` と `at` は独立している
+### `as` and `at` are independent
 
-`execute as @e[...] run function ...` で呼ばれた関数の中では、
-`as @s` で対象を指定し直さないと**実行位置は呼び出し元と同じ**になります。
+Inside a function invoked with `execute as @e[...] run function ...`, **the execution position stays where the caller was** unless you re-position it with `at @s`.
 
-厄介なのは **NBT を触る処理は `as` だけで正しく動いてしまう**ことで、
-`grow_one.mcfunction` は最初に「成長促進のパーティクルが子供の上ではなく Livestock Feeder の上」に出ていました。
+The nasty part is that **anything touching NBT works correctly with `as` alone**. `grow_one.mcfunction` originally emitted its growth particles on top of the Livestock Feeder instead of on the baby, and nothing else looked wrong.
 
-### パーティクルの `normal` / `force` は用途で逆になる
+### `normal` and `force` particles swap roles by purpose
 
-| モード | 可視距離 | クライアント設定 |
+| Mode | Visible range | Client setting |
 |---|---|---|
-| `normal` | 約 32 ブロック | 「少なめ」だと間引かれる |
-| `force` | 約 512 ブロック | 設定を無視して必ず描画 |
+| `normal` | About 32 blocks | Culled when Particles is set to Decreased or Minimal |
+| `force` | About 512 blocks | Always drawn, whatever the setting |
 
-- **デバッグ表示は `force`**。「見えない」の原因が切り分けられなくなるため
-- **常時表示は `normal`**。遠方の表示はサーバが自動で省略するため
+- **Use `force` for debug output.** Otherwise you cannot tell a server-side problem from a client setting
+- **Use `normal` for anything always-on.** The server drops distant particles for you, which is exactly what you want here
 
-なお、餌の在庫が無くなった時に **2 秒周期で `angry_villager` を出す**のも試しましたが、鬱陶しいのでやめました。
-在庫切れを明確に知らせたい場合は 30 秒周期の `each` 側で 1 回出す程度が良さそうです。
+I also tried emitting `angry_villager` every 2 seconds when a Livestock Feeder ran out of feed, but it was far too irritating to keep.
+If you do want a clear out-of-feed signal, emitting it once per 30-second cycle from `each` is about right.
 
-### マーカーは目視できない
+### You cannot see a marker
 
-`minecraft:marker` は当たり判定がゼロなので **F3+B のヒットボックス表示にも出ません**。
-しかも Livestock Feeder の場合はブロック中心に置いているので、ブロック自体に遮蔽されてしまいます。
-ちゃんと設置されているか、目視ではなく座標を表示させて確認することが重要です。
+`minecraft:marker` has no hitbox, so **it does not show up under F3+B** either.
+On top of that, the Livestock Feeder puts its marker at the center of the block, where the block itself hides it.
+To confirm a marker is really there, print its coordinates instead of looking for it.
 
-### ドロッパーは染色できない
+### Droppers cannot be dyed
 
-Minecraft の色付けはモデル側の `tintindex` に依存しています。
-革の防具やポーション、ヒツジの毛のように**塗る場所が定義されているものだけ**が染色できます。
-ドロッパーのモデルには `tintindex` が無いので、`dyed_color` を付けても何も起きません。
-(ベッドや羊毛ブロックに多数の色があるのは染色ではなく、**それぞれ別の種類のブロック**として定義されているから)
+Coloring in Minecraft depends on a `tintindex` in the model.
+Only things with a defined area to tint — leather armor, potions, sheep wool — can be dyed.
+The dropper model has no `tintindex`, so a `dyed_color` component does nothing at all.
+(Beds and wool come in many colors not because they are dyed, but because **each color is a separate block**.)
 
-Livestock Feeder のようなブロックの見た目を変えたければリソースパック、または MOD 化が必要です。
-`server.properties` の `resource-pack` で配布する事も可能ですが、**クライアントはバニラのままで遊べる**前提と違ってくるので、
-それはまた別の話になります。
+Changing how a block like the Livestock Feeder looks takes a resource pack, or turning the project into a mod.
+Distributing one through `resource-pack` in `server.properties` is possible, but it means building the pack, configuring the server, and having each client opt in to downloading it, so this project does not go there.
 
-### マクロの使いどころ
+### When macros are worth it
 
-餌が小麦 1 種類で試していた頃は「マクロにまとめるよりベタ書きのほうが速くて読める」状態でしたが、
-対応する家畜が 6 種に増えた時点で**トレードオフが逆転**することになりました。
-同じコード行を 6 箇所に複製すると、修正のたびに 6 箇所を直すことになり必ず取りこぼしが発生するでしょう。
+Back when the only feed was wheat, writing it out line by line really was faster and easier to read than folding it into a macro.
+Once six animals were supported, **that trade-off flipped**.
+Duplicating the same block of code in six places means fixing six places every time, and you will miss one sooner or later.
 
-ベタ書きかマクロ使用かの判断はコードの規模に依存します。「マクロは重いから避ける」は原則ではありません。
+Whether to spell it out or use a macro depends on the size of the code. "Avoid macros because they are slow" is not a rule.
 
 ---
 
-## ファイル構成
+## File layout
 
 ```
 data/
 ├── feeder/
 │   ├── advancement/
-│   │   ├── placed_dropper.json      設置検出のトリガ
+│   │   ├── placed_dropper.json      Placement trigger
 │   │   └── recipes/
-│   │       └── feeder.json          レシピブックの解禁条件
+│   │       └── feeder.json          Recipe unlock condition
 │   ├── function/
-│   │   ├── load.mcfunction          初期化・ループ起動
-│   │   ├── tick.mcfunction          判定ループ(30 秒)
-│   │   ├── glow.mcfunction          表示ループ(2 秒)
-│   │   ├── each.mcfunction          1 台ぶんの処理
-│   │   ├── table.mcfunction         家畜の一覧(マクロ・唯一の定義元)
-│   │   ├── species.mcfunction       1 種ぶんの給餌処理(マクロ)
-│   │   ├── grow_one.mcfunction      成長促進
-│   │   ├── breed.mcfunction         繁殖(マクロ)
-│   │   ├── consume.mcfunction       餌の消費(マクロ)
-│   │   ├── unlock.mcfunction        レシピ解禁時の通知
-│   │   ├── register.mcfunction      手動登録(フォールバック)
-│   │   ├── debug.mcfunction         診断
-│   │   ├── reset_stats.mcfunction   統計のリセット
+│   │   ├── load.mcfunction          Setup and loop startup
+│   │   ├── tick.mcfunction          Main loop (30 s)
+│   │   ├── glow.mcfunction          Particle loop (2 s)
+│   │   ├── each.mcfunction          One machine's turn
+│   │   ├── table.mcfunction         Animal list (macro, single source of truth)
+│   │   ├── species.mcfunction       Feeding logic for one species (macro)
+│   │   ├── grow_one.mcfunction      Growth
+│   │   ├── breed.mcfunction         Breeding (macro)
+│   │   ├── consume.mcfunction       Feed consumption (macro)
+│   │   ├── unlock.mcfunction        Recipe unlock notice
+│   │   ├── register.mcfunction      Manual registration (fallback)
+│   │   ├── debug.mcfunction         Diagnostics
+│   │   ├── reset_stats.mcfunction   Statistics reset
 │   │   ├── stat/
-│   │   │   ├── init.mcfunction      種別カウンタの初期化
-│   │   │   ├── reset.mcfunction     種別カウンタのゼロクリア
-│   │   │   ├── sum.mcfunction       種別カウンタの合計
-│   │   │   └── show.mcfunction      種別カウンタの表示
+│   │   │   ├── init.mcfunction      Create per-species counters
+│   │   │   ├── reset.mcfunction     Zero per-species counters
+│   │   │   ├── sum.mcfunction       Total per-species counters
+│   │   │   └── show.mcfunction      Print per-species counters
 │   │   └── place/
-│   │       ├── detect.mcfunction    設置イベントの受け口
-│   │       ├── ray.mcfunction       視線方向の走査
-│   │       └── hit.mcfunction       マーカーの設置
+│   │       ├── detect.mcfunction    Entry point for the placement event
+│   │       ├── ray.mcfunction       Raycast along the line of sight
+│   │       └── hit.mcfunction       Place the marker
 │   ├── item_modifier/
-│   │   └── consume_one.json         餌を 1 個減らす
+│   │   └── consume_one.json         Remove one feed item
 │   ├── recipe/
-│   │   └── feeder.json              クラフトレシピ
+│   │   └── feeder.json              Crafting recipe
 │   └── tags/
 │       ├── entity_type/
-│       │   └── livestock.json       全体頭数の集計対象
+│       │   └── livestock.json       Counted toward the overall limit
 │       └── item/
-│           ├── all_food.json        在庫判定用(下記をまとめたもの)
-│           ├── wheat_food.json      ウシ・ムーシュルーム・ヒツジ
-│           ├── pig_food.json        ブタ
-│           ├── rabbit_food.json     ウサギ
-│           └── chicken_food.json    ニワトリ
+│           ├── all_food.json        Stock check (union of the tags below)
+│           ├── wheat_food.json      Cow / Mooshroom / Sheep
+│           ├── pig_food.json        Pig
+│           ├── rabbit_food.json     Rabbit
+│           └── chicken_food.json    Chicken
 └── minecraft/
-    └── tags/function/load.json      #load への登録
+    └── tags/function/load.json      Hooks feeder:load into #load
 ```
 
-### 設置と活性化の仕組み
+### How placement and activation work
 
-データパックではブロックを新規追加することはできないため、**ドロッパーを実体**とし、その位置に `minecraft:marker` を置いて「登録済み」を表現しています。
+A data pack cannot add new blocks, so **a dropper serves as the physical block**, and a `minecraft:marker` placed at its position is what "registered" actually means.
 
-設置の検出はアドバンスメントの `placed_block` トリガで行っていますが、このトリガは座標を渡してくれません。
+Placement is detected with the `placed_block` advancement trigger, but that trigger does not hand over any coordinates.
 
-設置直後は必ず視線上にブロックがあることを利用して、プレイヤーの目からレイキャストして設置したドロッパーの座標を取得する仕掛けになっています。
+What it does instead is lean on the fact that a freshly placed block is always in your line of sight: it raycasts forward from the player's eyes and picks up the dropper's coordinates that way.
 
-通常のドロッパーとの識別には、金床ではなく**クラフト時に付与される色付きの名前**を使います。
-金床は名前に色を付けられないため、これによりクラフト品だけを受け付ける事が可能です。
+To tell it apart from an ordinary dropper, it looks at **the colored name the recipe applies**, rather than anything an anvil could produce.
+An anvil cannot add color to a name, which is what makes "crafted ones only" enforceable.
 
-### 家畜の一覧を 1 箇所に集める仕組み
+### Keeping the animal list in one place
 
-`table.mcfunction` は、呼び出す関数名自体をマクロ引数で受け取ります。
+`table.mcfunction` takes the name of the function to call as a macro argument.
 
 ```mcfunction
 $function feeder:$(op) {key:"cow", id:"minecraft:cow", food:"#feeder:wheat_food", cap:"8"}
 ```
 
-`op` を差し替えることで、同じ表を複数の用途に使い回しています。
+Swapping `op` lets the same table serve several purposes.
 
-| `op` | 用途 |
+| `op` | Purpose |
 |---|---|
-| `species` | 給餌処理 |
-| `stat/init` | カウンタの初期化 |
-| `stat/reset` | カウンタのゼロクリア |
-| `stat/sum` | カウンタの合計 |
-| `stat/show` | カウンタの表示 |
+| `species` | Feeding logic |
+| `stat/init` | Create the counters |
+| `stat/reset` | Zero the counters |
+| `stat/sum` | Total the counters |
+| `stat/show` | Print the counters |
 
-家畜の一覧がこの 1 ファイルにしか存在しないので、**家畜の種類を追加したときに片方だけ直し忘れる、という事故が起きません**。
-呼び出し先が使わない引数は無視されるので、`key` しか見ない関数でも問題ありません。
+Because the animal list lives in exactly one file, **there is no second copy to forget about when you add a species**.
+Arguments the callee does not use are simply ignored, so a function that only reads `key` works fine.
+
+---
+
+## License
+
+Livestock Feeder is licensed under the BSD Zero Clause License.
+See the [LICENSE](LICENSE.md) file for details.
