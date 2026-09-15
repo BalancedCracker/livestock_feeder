@@ -486,3 +486,10 @@ $function feeder:$(op) {key:"cow", id:"minecraft:cow", food:"#feeder:wheat_food"
 
 Livestock Feeder は BSD Zero Clause License に基づいてライセンスされています。
 詳細については [LICENSE](LICENSE.md) ファイルを参照してください。
+
+ただし `pack.png` と `recipe.png` に描かれている Minecraft のアイテムやブロックの意匠は
+Mojang Studios の著作物であり、上記のライセンスの対象には含まれません。
+これらの画像は Mojang Studios の利用ガイドラインに従って使用しています。
+
+Minecraft は Mojang Studios の商標です。
+このプロジェクトは Mojang Studios および Microsoft とは関係がありません。

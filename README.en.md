@@ -484,3 +484,10 @@ Arguments the callee does not use are simply ignored, so a function that only re
 
 Livestock Feeder is licensed under the BSD Zero Clause License.
 See the [LICENSE](LICENSE.md) file for details.
+
+Note that the Minecraft items and blocks depicted in `pack.png` and `recipe.png`
+are the property of Mojang Studios and are not covered by that license.
+Those images are used in accordance with Mojang Studios' usage guidelines.
+
+Minecraft is a trademark of Mojang Studios.
+This project is not affiliated with Mojang Studios or Microsoft.

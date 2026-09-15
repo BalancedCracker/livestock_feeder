@@ -1,6 +1,3 @@
-BSD Zero Clause License
-=======================
-
 Copyright (c) 2026 BalancedCracker
 
 Permission to use, copy, modify, and/or distribute this software for any
